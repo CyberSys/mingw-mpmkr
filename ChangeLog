@@ -1,0 +1,8 @@
+2013-08-05  Earnie Boyd  <earnie@users.sourceforge.net>
+
+	* ChangeLog: New file.
+	* README: Ditto.
+	* template/Makefile: Ditto.
+	* template/README.makefile: Ditto.
+	* template/README.template-1.0.0-1-mingw32: Ditto.
+	* template/package.ini: Ditto.
