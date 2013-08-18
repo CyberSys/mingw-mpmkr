@@ -46,7 +46,9 @@ INFODIR = share/info
 MANDIR = share/man
 LOCALEDIR = share/locale
 
-MPATCHOPT ?= -p0
+ifeq (,$(MPATCHOPT))
+MPATCHOPT = -p0
+endif
 
 INSTALL_DATA = /bin/install -v -m 644
 INSTALL_DIR = /bin/install -v -d

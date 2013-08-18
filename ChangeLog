@@ -1,6 +1,7 @@
 2013-08-18  Earnie Boyd  <earnie@users.sourceforge.net>
 
 	* template/Makefile (PACKAGE, PKGFILE): Rearrange use of PKGEXTRA.
+	(MPATCHOPT): Correct setting of the default using a test.
 	(LICDIR): New variable.
 	(CPALL): Ditto.
 	(EXTRACTPKG): Use PKGFILE variable.
