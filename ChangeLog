@@ -1,3 +1,32 @@
+2013-08-18  Earnie Boyd  <earnie@users.sourceforge.net>
+
+	* template/Makefile (PACKAGE, PKGFILE): Rearrange use of PKGEXTRA.
+	(LICDIR): New variable.
+	(CPALL): Ditto.
+	(EXTRACTPKG): Use PKGFILE variable.
+	($(PKGFILE) target): Use CPALL and RMFR instead of MV and RMDIR.
+	($(exec_compile) target): Enclose variable expansion test in quotes.
+	Correct the INSTALL_DIR target. Use CPALL instead of INSTALL_DATA.
+	(post_stage): New target.
+	(rls/$(MPKGBIN) target): Correct test for files.  Use CPALL instead of
+	INSTALL_DATA.  Test that pkg/bin has files before MKPKGFILE.
+	(rls/$(MPKGBIN) target): Use CPALL instead of INSTALL_DATA.
+	(rls/$(MPKGDEV) target): Modify variable name NEED_TO_MAKE to
+	NEED_TO_MAKEPKG. Use CPALL instead of INSTALL_DATA.  Set NEED_TO_MAKEPKG
+	with each directory test.  Correct some typos.
+	(rls/$(MPKGLIC) target): Enclose variable expansion test in quotes.  Use
+	LICDIR instead of DOCDIR.  Modify indentation.
+	(rls/$(MPKGDOC) target): Enclose variable expansion test in quotes.
+	Modify indentation.
+	(rls/$(MPKGINFO) target): Modify indentation.
+	(rls/$(MPKGMAN) target): Modify indentation.  Simplify coding.
+	(rls/$(MPKGLANG) target): Simplify coding.
+	(install target): Correct coding.
+	(usage target): Add post_stage documentation.
+	* template/README.makefile: Add words about "applies any patches".  Add
+	paragraph about usage with further explaination using examples.
+	* template/package.ini: Remove needless empty line.
+
 2013-08-05  Earnie Boyd  <earnie@users.sourceforge.net>
 
 	* ChangeLog: New file.

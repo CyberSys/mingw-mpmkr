@@ -26,8 +26,8 @@
 # This file is used to make the packages for template-1.0.0 MinGW distribution.
 include package.ini
 
-PACKAGE = $(PKG)-$(PKGVER)
-PKGFILE = $(PACKAGE)$(PKGEXTRA).$(PKGEXT)
+PACKAGE = $(PKG)-$(PKGVER)$(PKGEXTRA)
+PKGFILE = $(PACKAGE).$(PKGEXT)
 
 MPKG = $(PKG)-$(MPKGVER)-$(MPKGRLS)-$(MPKGRT)
 
@@ -41,6 +41,7 @@ MPKGINFO = $(MPKG)-info.$(MPKGEXT)
 MPKGMAN = $(MPKG)-man.$(MPKGEXT)
 MPKGLANG = $(MPKG)-lang.$(MPKGEXT)
 DOCDIR = share/doc/$(PKG)/$(MPKGVER)
+LICDIR = share/doc/$(PKG)/$(MPKGVER)
 INFODIR = share/info
 MANDIR = share/man
 LOCALEDIR = share/locale
@@ -51,12 +52,13 @@ INSTALL_DATA = /bin/install -v -m 644
 INSTALL_DIR = /bin/install -v -d
 INSTALL_BIN = /bin/install -v -m 755
 
+CPALL = /bin/cp -a
 MKDIR_P = /bin/mkdir -p
 RMF = /bin/rm -f
 RMFR = $(RMF)r
 RMPKG = $(RMFR) pkg/
 MKPKGFILE = cd pkg && /bin/tar acf ../$@ *
-EXTRACTPKG = /bin/tar axf $(PACKAGE).$(PKGEXT)
+EXTRACTPKG = /bin/tar axf $(PKGFILE)
 TOUCH = /bin/touch $@
 RMDIR = /bin/rmdir
 MV = /bin/mv
@@ -79,8 +81,8 @@ $(PKGFILE):
 	$(RMFR) part
 	$(MKDIR_P) part
 	$(WGET) $(PKGURL)/$(PKGFILE) -O part/$(PKGFILE)
-	$(MV) part/$(PKGFILE) $(PKGFILE)
-	$(RMDIR) part
+	$(CPALL) part/$(PKGFILE) $(PKGFILE)
+	$(RMFR) part
 
 patch: prep exec_patch
 exec_patch:
@@ -104,27 +106,27 @@ exec_compile:
 stage: compile exec_stage
 exec_stage: stg/share/doc/$(PKG)/$(MPKGVER)
 	$(STAGE)
-	if test $(COPY_BIN_TO_HOST) = 'y' \
-	  -o $(COPY_BIN_TO_HOST) = 'yes'; then \
+	if test "$(COPY_BIN_TO_HOST)" = 'y' \
+	  -o "$(COPY_BIN_TO_HOST)" = 'yes'; then \
 	  for F in stg/bin/*.exe; do \
 	    B=`basename $$F` ; \
 	    $(INSTALL_DATA) $$F stg/bin/$(HOST)-$$B ; \
 	  done ; \
 	fi
-	if test $(COPY_LIB_TO_HOST) = 'y' \
-	  -o $(COPY_LIB_TO_HOST) = 'yes'; then \
+	if test "$(COPY_LIB_TO_HOST)" = 'y' \
+	  -o "$(COPY_LIB_TO_HOST)" = 'yes'; then \
 	  if test -d stg/include; then \
-	    $(INSTALL_DIR) pkg/$(HOST)/include ; \
-	    $(INSTALL_DATA) stg/include/* pkg/$(HOST)/include/ ; \
+	    $(INSTALL_DIR) stg/$(HOST)/include ; \
+	    $(CPALL) stg/include/* stg/$(HOST)/include/ ; \
 	  fi ; \
 	  if test -d stg/lib; then \
-	    $(INSTALL_DIR) pkg/$(HOST)/lib ; \
-	    $(INSTALL_DATA) stg/lib/* pkg/$(HOST)/lib/ ; \
-	    $(RMF) pkg/lib/*.la ; \
+	    $(INSTALL_DIR) stg/$(HOST)/lib ; \
+	    $(CPALL) stg/lib/* stg/$(HOST)/lib/ ; \
+	    $(RMF) stg/lib/*.la ; \
 	  fi ; \
 	  if test -d stg/libexec; then \
-	    $(INSTALL_DIR) pkg/$(HOST)/libexec ; \
-	    $(INSTALL_DATA) stg/libexec/* pkg/$(HOST)/libexec/ ; \
+	    $(INSTALL_DIR) stg/$(HOST)/libexec ; \
+	    $(CPALL) stg/libexec/* stg/$(HOST)/libexec/ ; \
 	  fi ; \
 	fi
 	$(TOUCH)
@@ -139,7 +141,11 @@ stg/share/doc/$(PKG)/$(MPKGVER)/README.$(MPKG): README.$(MPKG)
 	$(INSTALL_DIR) $(@D)
 	$(INSTALL_DATA) $? $@
 
-package: stage exec_package
+post_stage: stage exec_post_stage
+exec_post_stage:
+	$(TOUCH)
+
+package: post_stage exec_package
 exec_package: rls rls/$(MPKGSRC) rls/$(MPKGDLL) rls/$(MPKGBIN) rls/$(MPKGDEV) rls/$(MPKGLIC) rls/$(MPKGDOC) rls/$(MPKGINFO) rls/$(MPKGMAN) rls/$(MPKGLANG) rls/README.$(MPKG)
 	$(TOUCH)
 
@@ -156,119 +162,118 @@ rls/$(MPKGSRC): $(PKGFILE) Makefile package.ini README.makefile README.$(MPKG) $
 	$(MKPKGFILE)
 
 rls/$(MPKGBIN):
-	if test -f stg/bin/*.exe; then \
+	if test -e stg/bin/*; then \
 	  $(RMPKG) ; \
 	  $(INSTALL_DIR) pkg/bin ; \
 	  if test -d stg/$(HOST)/bin; then \
 	    $(INSTALL_DIR) pkg/$(HOST)/bin ; \
-	    $(INSTALL_DATA) stg/$(HOST)/bin/* pkg/$(HOST)/bin/ ; \
+	    $(CPALL) stg/$(HOST)/bin/* pkg/$(HOST)/bin/ ; \
 	    $(RMF) pkg/$(HOST)/bin/*.dll ; \
 	  fi ; \
-	  $(INSTALL_DATA) stg/bin/* pkg/bin/ ; \
+	  $(CPALL) stg/bin/* pkg/bin/ ; \
 	  $(RMF) pkg/bin/*.dll ; \
-	  $(MKPKGFILE) ; \
+	  if test -e pkg/bin/*; then \
+	    $(MKPKGFILE) ; \
+	  fi ; \
 	fi
 
 rls/$(MPKGDLL):
 	if test -f stg/bin/*.dll; then \
 	  $(RMPKG) ; \
 	  $(INSTALL_DIR) pkg/bin ; \
-	  $(INSTALL_DATA) stg/bin/*.dll pkg/bin/ ; \
+	  $(CPALL) stg/bin/*.dll pkg/bin/ ; \
 	  $(MKPKGFILE) ; \
 	fi
 
 rls/$(MPKGDEV):
-	$(eval NEED_TO_MAKE = 0)
-	if test -d stg/include -o -d stg/lib -o -d std/libexec; then \
+	$(eval NEED_TO_MAKEPKG = 0)
+	if test -d stg/include -o -d stg/lib -o -d stg/libexec; then \
 	  $(RMPKG) ; \
 	  if test -d stg/include; then \
 	    $(INSTALL_DIR) pkg/include ; \
-	    $(INSTALL_DATA) stg/include/* pkg/include/ ; \
+	    $(CPALL) stg/include pkg/ ; \
+	    $(eval NEED_TO_MAKEPKG = 1) \
 	  fi ; \
 	  if test -d stg/lib; then \
 	    $(INSTALL_DIR) pkg/lib ; \
-	    $(INSTALL_DATA) stg/lib/* pkg/lib/ ; \
+	    $(CPALL) stg/lib pkg/ ; \
 	    $(RMF) pkg/lib/*.la ; \
+	    $(eval NEED_TO_MAKEPKG = 1) \
 	  fi ; \
 	  if test -d stg/libexec; then \
 	    $(INSTALL_DIR) pkg/libexec ; \
-	    $(INSTALL_DATA) stg/libexec/* pkg/libexec/ ; \
+	    $(CPALL) stg/libexec pkg/ ; \
+	    $(eval NEED_TO_MAKEPKG = 1) \
 	  fi ; \
-	  $(eval NEED_TO_MAKE = 1) ; \
 	fi
 	if test -d stg/$(HOST)/include \
-	  -o -d stg/$(HOST)/lib
-	  -o -d std/$(HOST)/libexec; then \
+	  -o -d stg/$(HOST)/lib \
+	  -o -d stg/$(HOST)/libexec; then \
 	  if test -d stg/include; then \
 	    $(INSTALL_DIR) pkg/$(HOST)/include ; \
-	    $(INSTALL_DATA) stg/$(HOST)/include/* pkg/$(HOST)/include/ ; \
+	    $(CPALL) stg/$(HOST)/include/* pkg/$(HOST)/include/ ; \
+	    $(eval NEED_TO_MAKEPKG = 1) \
 	  fi ; \
 	  if test -d stg/lib; then \
 	    $(INSTALL_DIR) pkg/$(HOST)/lib ; \
-	    $(INSTALL_DATA) stg/$(HOST)/lib/* pkg/$(HOST)/lib/ ; \
+	    $(CPALL) stg/$(HOST)/lib/* pkg/$(HOST)/lib/ ; \
 	    $(RMF) pkg/$(HOST)/lib/*.la ; \
+	    $(eval NEED_TO_MAKEPKG = 1) \
 	  fi ; \
 	  if test -d stg/libexec; then \
 	    $(INSTALL_DIR) pkg/$(HOST)/libexec ; \
-	    $(INSTALL_DATA) stg/$(HOST)/libexec/* pkg/$(HOST)/libexec/ ; \
+	    $(CPALL) stg/$(HOST)/libexec/* pkg/$(HOST)/libexec/ ; \
+	    $(eval NEED_TO_MAKEPKG = 1) \
 	  fi ; \
-	  $(eval NEED_TO_MAKE = 1) ; \
 	fi
-	if test $(NEED_TO_MAKE) = 1; then \
+	if test $(NEED_TO_MAKEPKG) = 1; then \
 	  $(MKPKGFILE) ; \
 	fi
 
 rls/$(MPKGLIC):
-	if test ! -z $(LIC_FILES); then \
-		$(RMPKG) ; \
-		for F in $(LIC_FILES); do \
-			D=`dirname $$F` ; \
-			$(INSTALL_DIR) pkg/$(DOCDIR)/$$D ; \
-			$(INSTALL_DATA) stg/$(DOCDIR)/$$F pkg/$(DOCDIR)/$$D ; \
-		done ; \
-		$(MKPKGFILE) ; \
+	if test ! -z "$(LIC_FILES)"; then \
+	  $(RMPKG) ; \
+	  for F in $(LIC_FILES); do \
+	    D=`dirname $$F` ; \
+	    $(INSTALL_DIR) pkg/$(LICDIR)/$$D ; \
+	    $(INSTALL_DATA) stg/$(LICDIR)/$$F pkg/$(LICDIR)/$$D ; \
+	  done ; \
+	  $(MKPKGFILE) ; \
 	fi
 
 rls/$(MPKGDOC):
-	if test ! -z $(DOC_FILES); then \
-		$(RMPKG) ; \
-		for F in $(DOC_FILES) README.$(MPKG); do \
-			D=`dirname $$F` ; \
-			$(INSTALL_DIR) pkg/$(DOCDIR)/$$D ; \
-			$(INSTALL_DATA) stg/$(DOCDIR)/$$F pkg/$(DOCDIR)/$$D ; \
-		done ; \
-		$(MKPKGFILE) ; \
+	if test ! -z "$(DOC_FILES)"; then \
+	  $(RMPKG) ; \
+	  for F in $(DOC_FILES) README.$(MPKG); do \
+	    D=`dirname $$F` ; \
+	    $(INSTALL_DIR) pkg/$(DOCDIR)/$$D ; \
+	    $(INSTALL_DATA) stg/$(DOCDIR)/$$F pkg/$(DOCDIR)/$$D ; \
+	  done ; \
+	  $(MKPKGFILE) ; \
 	fi
 
 rls/$(MPKGINFO):
 	if test -d stg/$(INFODIR); then \
-		$(RMPKG) ; \
-		$(INSTALL_DIR) pkg/$(INFODIR) ; \
-		$(INSTALL_DATA) stg/$(INFODIR)/* pkg/$(INFODIR)/ ; \
-		$(RMF) pkg/$(INFODIR)/dir ; \
-		$(MKPKGFILE) ; \
+	  $(RMPKG) ; \
+	  $(INSTALL_DIR) pkg/$(INFODIR) ; \
+	  $(CPALL) stg/$(INFODIR)/* pkg/$(INFODIR)/ ; \
+	  $(RMF) pkg/$(INFODIR)/dir ; \
+	  $(MKPKGFILE) ; \
 	fi
 
 rls/$(MPKGMAN):
 	if test -d stg/$(MANDIR); then \
-		$(RMPKG) ; \
-		$(INSTALL_DIR) pkg/$(MANDIR) ; \
-		for F in stg/$(MANDIR)/*; do \
-		  D=`basename $$F` ; \
-		  $(INSTALL_DIR) pkg/$(MANDIR)/$$D ; \
-		  $(INSTALL_DIR) $$F/* pkg/$(MANDIR)/$$D/ ; \
-		done ; \
-		$(MKPKGFILE) ; \
+	  $(RMPKG) ; \
+	  $(INSTALL_DIR) pkg/$(MANDIR) ; \
+	  $(CPALL) stg/$(MANDIR)/* pkg/$(MANDIR) ; \
+	  $(MKPKGFILE) ; \
 	fi
 
 rls/$(MPKGLANG):
 	if test -d stg/$(LOCALEDIR); then \
 	  $(RMPKG) ; \
-	  for F in stg/$(LOCALEDIR)/*; do \
-	    D=`basename $$F` ; \
-	    $(INSTALL_DIR) pkg/$(LOCALEDIR)/$$D/LC_MESSAGES ; \
-	    $(INSTALL_DATA) $$F/LC_MESSAGES/* pkg/$(LOCALEDIR)/$$D/LC_MESSAGES/ ; \
-	  done ; \
+	  $(INSTALL_DIR) pkg/$(LOCALEDIR) ; \
+	  $(CPALL) stg/$(LOCALEDIR)/* pkg/$(LOCALEDIR)/ ; \
 	  $(MKPKGFILE) ; \
 	fi
 
@@ -292,7 +297,8 @@ exec_check:
 	$(TOUCH)
 
 install: compile stage
-	$(INSTALL) stg/* $(PREFIX)/
+	$(INSTALL_DIR) $(PREFIX)
+	$(CPALL) stg/* $(PREFIX)/
 
 usage:
 	@echo To use this make file do the following steps:
@@ -301,6 +307,7 @@ usage:
 	@echo make configure: Runs the configure script.
 	@echo make compile: Executes make.
 	@echo make stage: Installs into a staging area.
+	@echo make post_stage: Miscellaneous actions performed to the stage area.
 	@echo make package: Packages the build results including the source.
 	@echo make clean: Cleans the workspace in order to rebuild the package
 	@echo make check: Runs self-tests.
