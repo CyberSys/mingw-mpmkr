@@ -1,0 +1,13 @@
+diff --git w32api-4.0.0-1-mingw32-src/build-aux/config.sub b/config.sub
+index ae35431..b47471e 100755
+--- w32api-4.0.0-1-mingw32-src/build-aux/config.sub
++++ b/config.sub
+@@ -756,7 +756,7 @@ case $basic_machine in
+ 		basic_machine=microblaze-xilinx
+ 		;;
+ 	mingw32)
+-		basic_machine=i386-pc
++		basic_machine=i686-pc
+ 		os=-mingw32
+ 		;;
+ 	mingw32ce)

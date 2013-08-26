@@ -1,0 +1,22 @@
+diff zlib-1.2.8/win32/Makefile.gcc b/win32/Makefile.gcc
+--- zlib-1.2.8/win32/Makefile.gcc
++++ b/win32/Makefile.gcc
+@@ -36,7 +36,7 @@ IMPLIB    = libz.dll.a
+ #
+ # Set to 1 if shared object needs to be installed
+ #
+-SHARED_MODE=0
++SHARED_MODE=1
+ 
+ #LOC = -DASMV
+ #LOC = -DDEBUG -g
+@@ -66,6 +66,9 @@ RM = rm -f
+ 
+ prefix ?= /usr/local
+ exec_prefix = $(prefix)
++INCLUDE_PATH = $(prefix)/include
++BINARY_PATH = $(prefix)/bin
++LIBRARY_PATH = $(prefix)/lib
+ 
+ OBJS = adler32.o compress.o crc32.o deflate.o gzclose.o gzlib.o gzread.o \
+        gzwrite.o infback.o inffast.o inflate.o inftrees.o trees.o uncompr.o zutil.o

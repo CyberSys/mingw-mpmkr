@@ -15,6 +15,15 @@
 	* pthreads-w32/pthreads-w32-2.9.1: Ditto.
 	* zlib/zlib-1.2.8: Ditto.
 
+	Add forgotten patch files.
+
+	* gmp/gmp-5.1.2/config.sub.patch: New file.
+	* mpfr/mpfr-3.1.2/config.sub.patch: Ditto.
+	* mpc/mpc-1.0.1/config.sub.patch: Ditto.
+	* mingwrt/mingwrt-4.0.0/config.sub.patch: Ditto.
+	* w32api/w32api-4.0.0/config.sub.patch: Ditto.
+	* zlib/zlib-1.2.8/zlib-1.2.8-mingw32.patch: Ditto.
+
 2013-08-18  Earnie Boyd  <earnie@users.sourceforge.net>
 
 	* template/Makefile (PACKAGE, PKGFILE): Rearrange use of PKGEXTRA.
