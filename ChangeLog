@@ -5,6 +5,16 @@
 	(MPKGBIN target): Use $(LS) command and echo $$? for test filter.
 	(MPKGDLL target): Ditto.
 
+	Add released package data for future use.
+
+	* gmp/gmp-5.1.2: New package.
+	* mpfr/mpfr-3.1.2: Ditto.
+	* mpc/mpc-1.0.1: Ditto.
+	* mingwrt/mingwrt-4.0.0: Ditto.
+	* w32api/w32api-4.0.0: Ditto.
+	* pthreads-w32/pthreads-w32-2.9.1: Ditto.
+	* zlib/zlib-1.2.8: Ditto.
+
 2013-08-18  Earnie Boyd  <earnie@users.sourceforge.net>
 
 	* template/Makefile (PACKAGE, PKGFILE): Rearrange use of PKGEXTRA.

@@ -1,0 +1,54 @@
+mingw pthreads
+==============================================================================
+This distribution is created from pristine source without patches.
+
+The optional QueueUserAPCEx driver and client dll are not included in this
+release.  That decision was made due to the number of downloads for the
+optional feature and due to the fact that I wanted to deliver pristine source.
+The previous release modified the build options to add -mms-bitfields.  This
+release did not add that option to the build machinery as an effort to provide
+the release in pristine condition.  This will cause ABI issues so this pthreads
+release should only be used with the gcc-2.8.1 release.  This release includes
+the GC-static version of the static library instead of a copy of the DLL import
+library.  This means that you might need to call some initializations for the
+static library to work.  See the pthreads-win32 homepage for instructions.
+
+Canonical homepage: http://www.sourceware.org/pthreads-win32/
+Canonical download: ftp://sourceware.org/pub/pthreads-win32/
+License: LGPLv2.1
+Language: C and C++
+
+Build requirements:
+  MinGW gcc and g++ runtime environment
+  MSYS shell environment include msys-xz
+
+Build instructions:
+  cd working-directory
+  mingw-get source mingw32-pthreads
+  cd pthreads-w32-2.9.1-1-mingw32-src
+  make clean package
+  # See the output of make usage for a detailed list of targets
+  # You can edit package.ini to modify the configuration items or to increment
+  # the MPKGRLS value (the -1- after the mingw32).
+
+When the job completes the release files will be generated in the rls directory
+of the working directory.
+
+  README.pthreads-w32-2.9.1-1-mingw32
+  pthreads-w32-2.9.1-1-mingw32-dev.tar.lzma
+  pthreads-w32-2.9.1-1-mingw32-dll.tar.lzma
+  pthreads-w32-2.9.1-1-mingw32-doc.tar.lzma
+  pthreads-w32-2.9.1-1-mingw32-lic.tar.lzma
+  pthreads-w32-2.9.1-1-mingw32-src.tar.lzma
+
+Test results:
+The C (pthreadGC.dll) exceptions library passed all 135 tests when used with
+  both C and C++.
+The C++ (pthreadGCE.dll) exceptions library passed 118 tests and FAILED or
+  skipped 17 tests.
+FAILED OR SKIPPED TESTS:
+      cancel2, cancel3, cancel4, cancel5 cancel6a, cancel6b,
+      cleanup0, cleanup1, cleanup2, cleanup3,
+      condvar7, convar8, condvar9,
+      context1,
+      exception1, exception2, exception3

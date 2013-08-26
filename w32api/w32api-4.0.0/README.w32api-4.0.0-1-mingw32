@@ -1,0 +1,36 @@
+mingw w32api
+==============================================================================
+This distribution is created from pristine source without patches.
+
+Canonical homepage: http://mingw.org/
+Canonical download: http://sourceforge.net/projects/mingw/files/MinGW/Base/w32api/w32api-4.0.0/w32api-4.0.0-1-mingw32-bld.tar.lzma
+License: Mixed - Primarily MIT style license.
+         GPL for the profiling code in misc/gpl directory.
+Language: C
+
+Build requirements:
+  MinGW gcc runtime environment
+  MSYS shell environment and msys-xz
+
+Build instructions:
+  cd working-directory
+  mingw-get source mingw32-w32api
+  cd w32api-4.0.0-1-mingw32
+  make clean package
+  # See the output of make usage for a detailed list of targets
+  # You can edit package.ini to modify the configuration items or to increment
+  # the MPKGRLS value (the -1- after the mingw32).
+
+When the job completes the release files will be generated in the rls/ directory
+of the working directory.
+
+  README.w32api-4.0.0-1-mingw32
+  w32api-4.0.0-1-mingw32-bld.tar.lzma
+  w32api-4.0.0-1-mingw32-dev.tar.lzma
+  w32api-4.0.0-1-mingw32-doc.tar.lzma
+  w32api-4.0.0-1-mingw32-lic.tar.lzma
+  w32api-4.0.0-1-mingw32-src.tar.lzma
+
+Test results:
+  This package has no organized testing.  But individual unit testing proves
+  good.  This package was used to build GCC-2.8.1 release for MinGW.
