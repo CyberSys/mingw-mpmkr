@@ -66,9 +66,10 @@ RMDIR = /bin/rmdir
 MV = /bin/mv
 WGET = /bin/wget
 PATCH = /bin/patch
+LS = /bin/ls
 CONFIGURE = cd bld && ../$(PACKAGE)/configure
 COMPILE = cd bld && /bin/make
-STAGE = $(COMPILE) install prefix=\`pwd\`/../stg
+STAGE = $(COMPILE) install prefix=`pwd`/../stg
 
 all: usage
 
@@ -164,7 +165,7 @@ rls/$(MPKGSRC): $(PKGFILE) Makefile package.ini README.makefile README.$(MPKG) $
 	$(MKPKGFILE)
 
 rls/$(MPKGBIN):
-	if test -e stg/bin/*; then \
+	if test `$(LS) stg/bin/* > /dev/null; echo $$?` = 0; then \
 	  $(RMPKG) ; \
 	  $(INSTALL_DIR) pkg/bin ; \
 	  if test -d stg/$(HOST)/bin; then \
@@ -174,13 +175,13 @@ rls/$(MPKGBIN):
 	  fi ; \
 	  $(CPALL) stg/bin/* pkg/bin/ ; \
 	  $(RMF) pkg/bin/*.dll ; \
-	  if test -e pkg/bin/*; then \
+	  if test `$(LS) pkg/bin/* > /dev/null; echo $$?` = 0; then \
 	    $(MKPKGFILE) ; \
 	  fi ; \
 	fi
 
 rls/$(MPKGDLL):
-	if test -f stg/bin/*.dll; then \
+	if test `$(LS) stg/bin/*.dll > /dev/null; echo $$?` = 0; then \
 	  $(RMPKG) ; \
 	  $(INSTALL_DIR) pkg/bin ; \
 	  $(CPALL) stg/bin/*.dll pkg/bin/ ; \
