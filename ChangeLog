@@ -1,3 +1,8 @@
+2013-08-30  Earnie Boyd  <earnie@users.sourceforge.net>
+
+	* template/Makefile (MKPKGFILE): Add --dereference and
+	--hard-dereference to eliminate links in the tar file.
+
 2013-08-26  Earnie Boyd  <earnie@users.sourceforge.net>
 
 	* template/Makefile (LS): Add command variable.
