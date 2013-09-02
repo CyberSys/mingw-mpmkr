@@ -1,6 +1,7 @@
 This repository will hold the package build files for packages delivered by
-mingw-get from the MinGW SourceForge project.  This files can be used to create
-new packages or to maintain existing one.  The template directory is the
+mingw-get from the MinGW SourceForge project.  These files can be used to create
+new packages or to maintain existing ones.  The template directory is the
 starting point for you to create a new package.  Other directories should be
 named for the package, without versioning, for the latest version of that
-package.
+package.  If you've not downloaded the package archive file for the package wget
+will be used to download it from the PKGURL given in the package.ini file.
