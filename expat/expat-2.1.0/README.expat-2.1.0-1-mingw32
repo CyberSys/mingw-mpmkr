@@ -1,0 +1,36 @@
+mingw expat
+==============================================================================
+This distribution is created from pristine source without patches.
+
+Canonical homepage: http://sourceforge.net/projects/expat
+Canonical download: http://sourceforge.net/projects/expat/files/expat
+License: LGPLv3+
+Language: C
+
+Build requirements:
+  MinGW gcc and g++ runtime environment
+  MSYS shell environment and msys-xz
+
+Build instructions:
+  cd working-directory
+  mingw-get source mingw32-expat
+  cd expart-2.1.0-1-mingw32-src
+  make clean package
+  # See the output of make usage for a detailed list of targets
+  # You can edit package.ini to modify the configuration items or to increment
+  # the MPKGRLS value (the -1- after the mingw32).
+
+When the job completes the release files will be generated in the rls directory
+of the working directory.
+
+  README.expat-2.1.0-1-mingw32
+  expat-2.1.0-1-mingw32-bin.tar.lzma
+  expat-2.1.0-1-mingw32-dev.tar.lzma
+  expat-2.1.0-1-mingw32-dll.tar.lzma
+  expat-2.1.0-1-mingw32-doc.tar.lzma
+  expat-2.1.0-1-mingw32-lic.tar.lzma
+  expat-2.1.0-1-mingw32-man.tar.lzma
+  expat-2.1.0-1-mingw32-src.tar.lzma
+
+Test results:
+All tests passed.

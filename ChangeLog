@@ -5,6 +5,7 @@
 	* gettext/gettext-0.18.3.1: Ditto.
 	* libiconv/libiconv-1.14: Ditto.
 	* README: Add verbage about wget and correct tense usage.
+	* expat/expat-2.1.0: New package.
 
 2013-08-30  Earnie Boyd  <earnie@users.sourceforge.net>
 
