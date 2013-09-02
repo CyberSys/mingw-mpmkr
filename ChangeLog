@@ -1,3 +1,10 @@
+2013-09-02  Earnie Boyd  <earnie@users.sourceforge.net>
+
+	* binutils/binutils-2.23.2: New package.
+	* gcc/gcc-4.8.1: Ditto.
+	* gettext/gettext-0.18.3.1: Ditto.
+	* libiconv/libiconv-1.14: Ditto.
+
 2013-08-30  Earnie Boyd  <earnie@users.sourceforge.net>
 
 	* template/Makefile (MKPKGFILE): Add --dereference and

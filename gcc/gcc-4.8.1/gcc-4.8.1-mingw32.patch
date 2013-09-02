@@ -1,0 +1,80 @@
+diff --git gcc-4.8.1/gcc/ada/adaint.c b/gcc/ada/adaint.c
+index dc94d63..e1d52a1 100644
+--- gcc-4.8.1/gcc/ada/adaint.c
++++ b/gcc/ada/adaint.c
+@@ -73,6 +73,18 @@
+ #define HOST_OBJECT_SUFFIX ".obj"
+ #endif
+ 
++#if defined (__MINGW32__)
++
++#if defined (RTX)
++#include <windows.h>
++#include <Rtapi.h>
++#else
++#include "mingw32.h"
++
++/* Current code page to use, set in initialize.c.  */
++UINT CurrentCodePage;
++#endif
++
+ #ifdef IN_RTS
+ #include "tconfig.h"
+ #include "tsystem.h"
+@@ -107,18 +119,6 @@
+ extern "C" {
+ #endif
+ 
+-#if defined (__MINGW32__)
+-
+-#if defined (RTX)
+-#include <windows.h>
+-#include <Rtapi.h>
+-#else
+-#include "mingw32.h"
+-
+-/* Current code page to use, set in initialize.c.  */
+-UINT CurrentCodePage;
+-#endif
+-
+ #include <sys/utime.h>
+ 
+ /* For isalpha-like tests in the compiler, we're expected to resort to
+diff --git gcc-4.8.1/gcc/ada/initialize.c b/gcc/ada/initialize.c
+index 00c4d04..e386623 100644
+--- gcc-4.8.1/gcc/ada/initialize.c
++++ b/gcc/ada/initialize.c
+@@ -40,6 +40,11 @@
+ #include "vxWorks.h"
+ #endif
+ 
++#if defined (__MINGW32__)
++#include "mingw32.h"
++#include <windows.h>
++#endif
++
+ #ifdef IN_RTS
+ #include "tconfig.h"
+ #include "tsystem.h"
+@@ -62,8 +67,6 @@ extern "C" {
+ /******************************************/
+ 
+ #if defined (__MINGW32__)
+-#include "mingw32.h"
+-#include <windows.h>
+ 
+ extern void __gnat_init_float (void);
+ extern void __gnat_install_SEH_handler (void *);
+diff --git gcc-4.8.1/gcc/ada/mingw32.h b/gcc/ada/mingw32.h
+index 67bfd2c..5ca32f8 100644
+--- gcc-4.8.1/gcc/ada/mingw32.h
++++ b/gcc/ada/mingw32.h
+@@ -36,8 +36,6 @@
+ #ifndef _MINGW32_H
+ #define _MINGW32_H
+ 
+-#include <_mingw.h>
+-
+ #ifndef RTX
+ #define GNAT_UNICODE_SUPPORT
+ #define _UNICODE /* For C runtime */

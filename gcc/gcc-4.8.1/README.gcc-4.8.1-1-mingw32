@@ -1,0 +1,58 @@
+mingw gcc
+==============================================================================
+This distribution is created from pristine source without patches.
+
+Canonical homepage: http://gcc.gnu.org/
+Canonical download: http://ftp.gnu.org/gnu/gcc/
+License: LGPLv3+
+Language: C, C++, OBJC, ADA, GFORTRAN
+
+Build requirements:
+  MinGW gcc, g++ and ada runtime environment
+  MSYS shell environment and msys-xz
+
+Build instructions:
+  cd working-directory
+  mingw-get source mingw32-gcc
+  cd gcc-4.8.1-1-mingw32-src
+  make clean package
+  # See the output of make usage for a detailed list of targets
+  # You can edit package.ini to modify the configuration items or to increment
+  # the MPKGRLS value (the -1- after the mingw32).
+
+When the job completes the release files will be generated in the rls directory
+of the working directory.
+
+  README.gcc-4.8.1-1-mingw32
+  gcc-4.8.1-1-mingw32-lang.tar.lzma
+  gcc-4.8.1-1-mingw32-src.tar.lzma
+  gcc-ada-4.8.1-1-mingw32-bin.tar.lzma
+  gcc-ada-4.8.1-1-mingw32-dev.tar.lzma
+  gcc-ada-4.8.1-1-mingw32-dll.tar.lzma
+  gcc-ada-4.8.1-1-mingw32-doc.tar.lzma
+  gcc-ada-4.8.1-1-mingw32-info.tar.lzma
+  gcc-c++-4.8.1-1-mingw32-bin.tar.lzma
+  gcc-c++-4.8.1-1-mingw32-dev.tar.lzma
+  gcc-c++-4.8.1-1-mingw32-dll.tar.lzma
+  gcc-c++-4.8.1-1-mingw32-doc.tar.lzma
+  gcc-c++-4.8.1-1-mingw32-man.tar.lzma
+  gcc-core-4.8.1-1-mingw32-bin.tar.lzma
+  gcc-core-4.8.1-1-mingw32-dev.tar.lzma
+  gcc-core-4.8.1-1-mingw32-dll.tar.lzma
+  gcc-core-4.8.1-1-mingw32-doc.tar.lzma
+  gcc-core-4.8.1-1-mingw32-info.tar.lzma
+  gcc-core-4.8.1-1-mingw32-lic.tar.lzma
+  gcc-core-4.8.1-1-mingw32-man.tar.lzma
+  gcc-fortran-4.8.1-1-mingw32-bin.tar.lzma
+  gcc-fortran-4.8.1-1-mingw32-dev.tar.lzma
+  gcc-fortran-4.8.1-1-mingw32-dll.tar.lzma
+  gcc-fortran-4.8.1-1-mingw32-doc.tar.lzma
+  gcc-fortran-4.8.1-1-mingw32-info.tar.lzma
+  gcc-fortran-4.8.1-1-mingw32-man.tar.lzma
+  gcc-objc-4.8.1-1-mingw32-dev.tar.lzma
+  gcc-objc-4.8.1-1-mingw32-dll.tar.lzma
+  gcc-objc-4.8.1-1-mingw32-doc.tar.lzma
+
+Test results:
+I am not equipped in my environment to execute the test suite delivered with the
+source package.  However, I did use the results to rebuild the package itself.

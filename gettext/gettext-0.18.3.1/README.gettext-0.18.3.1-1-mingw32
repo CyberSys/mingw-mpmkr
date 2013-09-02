@@ -1,0 +1,731 @@
+mingw gettext
+==============================================================================
+This distribution is created from pristine source without patches.
+
+Canonical homepage: http://www.gnu.org/software/gettext/
+Canonical download: http://ftp.gnu.org/gnu/gettext/
+License: LGPLv3+
+Language: C and C++
+
+Build requirements:
+  MinGW gcc and g++ runtime environment
+  MSYS shell environment and msys-xz
+  mingw32-libiconv-dev
+
+Build instructions:
+  cd working-directory
+  mingw-get source mingw32-gettext
+  cd gettext-0.18.3-1-mingw32-src
+  make clean package
+  # See the output of make usage for a detailed list of targets
+  # You can edit package.ini to modify the configuration items or to increment
+  # the MPKGRLS value (the -1- after the mingw32).
+
+When the job completes the release files will be generated in the rls directory
+of the working directory.
+
+  README.gettext-0.18.3.1-1-mingw32
+  gettext-0.18.3.1-1-mingw32-bin.tar.lzma
+  gettext-0.18.3.1-1-mingw32-dev.tar.lzma
+  gettext-0.18.3.1-1-mingw32-dll.tar.lzma
+  gettext-0.18.3.1-1-mingw32-doc.tar.lzma
+  gettext-0.18.3.1-1-mingw32-eg.tar.lzma
+  gettext-0.18.3.1-1-mingw32-html.tar.lzma
+  gettext-0.18.3.1-1-mingw32-info.tar.lzma
+  gettext-0.18.3.1-1-mingw32-lang.tar.lzma
+  gettext-0.18.3.1-1-mingw32-lic.tar.lzma
+  gettext-0.18.3.1-1-mingw32-man.tar.lzma
+  gettext-0.18.3.1-1-mingw32-src.tar.lzma
+
+Test results:
+gettext-runtime/tests
+============================
+   : tests/test-suite.log
+============================
+
+# TOTAL: 1
+# PASS:  1
+# SKIP:  0
+# XFAIL: 0
+# FAIL:  0
+# XPASS: 0
+# ERROR: 0
+
+.. contents:: :depth: 2
+
+gettext-tools/tests
+============================
+   : tests/test-suite.log
+============================
+
+# TOTAL: 366
+# PASS:  325
+# SKIP:  31
+# XFAIL: 0
+# FAIL:  10
+# XPASS: 0
+# ERROR: 0
+
+.. contents:: :depth: 2
+
+SKIP: gettext-3
+===============
+
+Skipping test: not a glibc system
+
+FAIL: gettext-4
+===============
+
+call 1 returned: cheese
+call 2 returned: cheese
+call 3 returned: cheese
+
+SKIP: gettext-5
+===============
+
+Skipping test: not a glibc system
+
+SKIP: gettext-6
+===============
+
+Skipping test: not a glibc or Mac OS X system
+
+SKIP: gettext-7
+===============
+
+Skipping test: not a glibc or Mac OS X system
+
+FAIL: msgexec-1
+===============
+
+1,48c1,48
+< ========================= mex-test1.po:4 =========================
+< 
+< ---
+< Project-Id-Version: Bonnie Tyler
+< Content-Type: text/plain; charset=ISO-8859-1
+< Content-Transfer-Encoding: 8bit
+< 
+< ========================= mex-test1.po:12 =========================
+< The world is full of married men
+< ---
+< So viele verheiratete Männer
+< ========================= mex-test1.po:16 =========================
+< with wives who never understand
+< ---
+< und ihre Frauen verstehen sie nicht
+< ========================= mex-test1.po:20 =========================
+< They're looking for someone to share
+< ---
+< 
+< ========================= mex-test1.po:25 =========================
+< the excitement of a love affair
+< ---
+< 
+< ========================= mex-test1.po:29 =========================
+< Just as soon as they find you
+< ---
+< 
+< ========================= mex-test1.po:33 =========================
+< They warn you and darn you
+< ---
+< 
+< ========================= mex-test1.po:36 =========================
+< You fly on the wings of romance
+< ---
+< Die Flügel der frischen Liebe
+< heben dich zum Himmel
+< ========================= mex-test1.po:41 =========================
+< In the eyes of the world
+< ---
+< Für die anderen
+< ========================= mex-test1.po:45 =========================
+< You're just another crazy girl
+< ---
+< bist du bloß ein verrücktes dummes Ding
+< ========================= mex-test1.po:48 =========================
+< Who loves a married man
+< ---
+< das einen verheirateten Mann liebt
+---
+> ========================= mex-test1.po:4 =========================
+> 
+> ---
+> Project-Id-Version: Bonnie Tyler
+> Content-Type: text/plain; charset=ISO-8859-1
+> Content-Transfer-Encoding: 8bit
+> 
+> ========================= mex-test1.po:12 =========================
+> The world is full of married men
+> ---
+> So viele verheiratete Männer
+> ========================= mex-test1.po:16 =========================
+> with wives who never understand
+> ---
+> und ihre Frauen verstehen sie nicht
+> ========================= mex-test1.po:20 =========================
+> They're looking for someone to share
+> ---
+> 
+> ========================= mex-test1.po:25 =========================
+> the excitement of a love affair
+> ---
+> 
+> ========================= mex-test1.po:29 =========================
+> Just as soon as they find you
+> ---
+> 
+> ========================= mex-test1.po:33 =========================
+> They warn you and darn you
+> ---
+> 
+> ========================= mex-test1.po:36 =========================
+> You fly on the wings of romance
+> ---
+> Die Flügel der frischen Liebe
+> heben dich zum Himmel
+> ========================= mex-test1.po:41 =========================
+> In the eyes of the world
+> ---
+> Für die anderen
+> ========================= mex-test1.po:45 =========================
+> You're just another crazy girl
+> ---
+> bist du bloß ein verrücktes dummes Ding
+> ========================= mex-test1.po:48 =========================
+> Who loves a married man
+> ---
+> das einen verheirateten Mann liebt
+
+FAIL: msgexec-3
+===============
+
+1,29c1,29
+< ========================= mex-test3.properties:3 =========================
+< 
+< ---
+< Project-Id-Version: Bonnie Tyler
+< 
+< ========================= mex-test3.properties:7 =========================
+< The world is full of married men
+< ---
+< So viele verheiratete MÃ¤nner
+< ========================= mex-test3.properties:10 =========================
+< with wives who never understand
+< ---
+< und ihre Frauen verstehen sie nicht
+< ========================= mex-test3.properties:13 =========================
+< They're looking for someone to share
+< ---
+< 
+< ========================= mex-test3.properties:17 =========================
+< the excitement of a love affair
+< ---
+< 
+< ========================= mex-test3.properties:20 =========================
+< Just as soon as they find you
+< ---
+< 
+< ========================= mex-test3.properties:23 =========================
+< They warn you and darn you
+< ---
+< 
+---
+> ========================= mex-test3.properties:3 =========================
+> 
+> ---
+> Project-Id-Version: Bonnie Tyler
+> 
+> ========================= mex-test3.properties:7 =========================
+> The world is full of married men
+> ---
+> So viele verheiratete MÃ¤nner
+> ========================= mex-test3.properties:10 =========================
+> with wives who never understand
+> ---
+> und ihre Frauen verstehen sie nicht
+> ========================= mex-test3.properties:13 =========================
+> They're looking for someone to share
+> ---
+> 
+> ========================= mex-test3.properties:17 =========================
+> the excitement of a love affair
+> ---
+> 
+> ========================= mex-test3.properties:20 =========================
+> Just as soon as they find you
+> ---
+> 
+> ========================= mex-test3.properties:23 =========================
+> They warn you and darn you
+> ---
+> 
+
+FAIL: msgexec-4
+===============
+
+1,45c1,45
+< ========================= mex-test4.po:2 =========================
+< 
+< ---
+< Content-Type: text/plain; charset=UTF-8
+< Content-Transfer-Encoding: 8bit
+< 
+< ========================= mex-test4.po:9 =========================
+< context: File|
+< Open
+< ---
+< Ouvrir
+< ========================= mex-test4.po:14 =========================
+< context: File|
+< New
+< ---
+< Nouveau
+< ========================= mex-test4.po:19 =========================
+< context: Lock state
+< Open
+< ---
+< Ouvert
+< ========================= mex-test4.po:24 =========================
+< context: Lock state
+< Closed
+< ---
+< FermÃ©
+< ========================= mex-test4.po:29 =========================
+< context: Audi
+< car
+< ---
+< voiture
+< ========================= mex-test4.po:34 =========================
+< context: OcÃ©
+< copier
+< ---
+< photocopieur
+< ========================= mex-test4.po:37 =========================
+< Save As
+< ---
+< Enregistrer l'as
+< ========================= mex-test4.po:42 =========================
+< context: File|
+< Save As
+< ---
+< Enregistrer sous
+---
+> ========================= mex-test4.po:2 =========================
+> 
+> ---
+> Content-Type: text/plain; charset=UTF-8
+> Content-Transfer-Encoding: 8bit
+> 
+> ========================= mex-test4.po:9 =========================
+> context: File|
+> Open
+> ---
+> Ouvrir
+> ========================= mex-test4.po:14 =========================
+> context: File|
+> New
+> ---
+> Nouveau
+> ========================= mex-test4.po:19 =========================
+> context: Lock state
+> Open
+> ---
+> Ouvert
+> ========================= mex-test4.po:24 =========================
+> context: Lock state
+> Closed
+> ---
+> FermÃ©
+> ========================= mex-test4.po:29 =========================
+> context: Audi
+> car
+> ---
+> voiture
+> ========================= mex-test4.po:34 =========================
+> context: OcAc
+> copier
+> ---
+> photocopieur
+> ========================= mex-test4.po:37 =========================
+> Save As
+> ---
+> Enregistrer l'as
+> ========================= mex-test4.po:42 =========================
+> context: File|
+> Save As
+> ---
+> Enregistrer sous
+
+SKIP: msgunfmt-csharp-1
+=======================
+
+Skipping test: C# compiler not found
+
+SKIP: msgunfmt-java-1
+=====================
+
+Skipping test: configured with --disable-java
+
+SKIP: recode-sr-latin-1
+=======================
+
+Skipping test: no french UTF-8 locale is supported
+
+SKIP: recode-sr-latin-2
+=======================
+
+Skipping test: no japanese EUC-JP locale is supported
+
+SKIP: xgettext-glade-1
+======================
+
+Skipping test: xgettext was built without Glade support
+
+SKIP: xgettext-glade-2
+======================
+
+Skipping test: xgettext was built without Glade support
+
+SKIP: xgettext-glade-3
+======================
+
+Skipping test: xgettext was built without Glade support
+
+SKIP: xgettext-glade-4
+======================
+
+Skipping test: xgettext was built without Glade support
+
+SKIP: xgettext-glade-5
+======================
+
+Skipping test: xgettext was built without Glade support
+
+SKIP: xgettext-glade-6
+======================
+
+Skipping test: xgettext was built without Glade support
+
+SKIP: xgettext-glade-7
+======================
+
+Skipping test: xgettext was built without Glade support
+
+FAIL: lang-c
+============
+
+1,3c1,3
+< «Votre commande, s'il vous plait», dit le garçon.
+< 2 morceaux de gateau
+< EUR remplace FF.
+---
+> 'Your command, please?', asked the waiter.
+> 2 pieces of cake
+> FF is replaced by EUR.
+
+SKIP: lang-c++
+==============
+
+Skipping test: configured with --disable-libasprintf
+
+FAIL: lang-objc
+===============
+
+1,3c1,3
+< «Votre commande, s'il vous plait», dit le garçon.
+< 2 morceaux de gateau
+< EUR remplace FF.
+---
+> 'Your command, please?', asked the waiter.
+> 2 pieces of cake
+> FF is replaced by EUR.
+
+FAIL: lang-sh
+=============
+
+1,2c1,2
+< «Votre commande, s'il vous plait», dit le garçon.
+< 2 morceaux de gateau
+---
+> 'Your command, please?', asked the waiter.
+> 2 pieces of cake
+
+FAIL: lang-bash
+===============
+
+1,2c1,2
+< «Votre commande, s'il vous plait», dit le garçon.
+< 2 morceaux de gateau
+---
+> 'Your command, please?', asked the waiter.
+> 2 pieces of cake
+
+SKIP: lang-python-1
+===================
+
+Skipping test: python not found
+
+SKIP: lang-python-2
+===================
+
+Skipping test: python not found
+
+SKIP: lang-clisp
+================
+
+Skipping test: clisp not found
+
+SKIP: lang-librep
+=================
+
+Skipping test: rep not found
+
+FAIL: lang-guile
+================
+
+1,3c1,3
+< «Votre commande, s'il vous plait», dit le garçon.
+< 2 morceaux de gateau
+< EUR remplace FF.
+---
+> 'Your command, please?', asked the waiter.
+> 2 pieces of cake
+> FF is replaced by EUR.
+
+SKIP: lang-smalltalk
+====================
+
+Skipping test: gst not found
+
+SKIP: lang-java
+===============
+
+Skipping test: configured with --disable-java
+
+SKIP: lang-csharp
+=================
+
+Skipping test: C# compiler not found
+
+SKIP: lang-gawk
+===============
+
+Skipping test: gawk was built without i18n support
+
+SKIP: lang-pascal
+=================
+
+Skipping test: Pascal compiler ppc386 or ppcx64 not found
+
+FAIL: lang-tcl
+==============
+
+1,2c1,2
+< «Votre commande, s'il vous plait», dit le garçon.
+< EUR remplace FF.
+---
+> 'Your command, please?', asked the waiter.
+> FF is replaced by EUR.
+
+SKIP: lang-perl-1
+=================
+
+Skipping test: perl package Locale::Messages is not installed
+
+SKIP: lang-perl-2
+=================
+
+Skipping test: perl package libintl-perl is not installed
+
+SKIP: lang-php
+==============
+
+Skipping test: php not found
+
+SKIP: lang-lua
+==============
+
+Skipping test: lua not found
+
+SKIP: lang-javascript
+=====================
+
+Skipping test: gjs not found
+
+SKIP: lang-vala
+===============
+
+Skipping test: valac not found
+
+gettext-tools/gnulib-tests
+===================================
+   : gnulib-tests/test-suite.log
+===================================
+
+# TOTAL: 176
+# PASS:  146
+# SKIP:  28
+# XFAIL: 0
+# FAIL:  2
+# XPASS: 0
+# ERROR: 0
+
+.. contents:: :depth: 2
+
+SKIP: test-file-has-acl.sh
+==========================
+
+Skipping test: insufficient ACL support
+
+SKIP: test-file-has-acl-1.sh
+============================
+
+Skipping test: insufficient ACL support
+
+SKIP: test-file-has-acl-2.sh
+============================
+
+Skipping test: insufficient ACL support
+
+SKIP: test-set-mode-acl.sh
+==========================
+
+Skipping test: insufficient ACL support
+
+SKIP: test-set-mode-acl-1.sh
+============================
+
+Skipping test: insufficient ACL support
+
+SKIP: test-set-mode-acl-2.sh
+============================
+
+Skipping test: insufficient ACL support
+
+SKIP: test-copy-acl.sh
+======================
+
+Skipping test: insufficient ACL support
+
+SKIP: test-copy-acl-1.sh
+========================
+
+Skipping test: insufficient ACL support
+
+SKIP: test-copy-acl-2.sh
+========================
+
+Skipping test: insufficient ACL support
+
+SKIP: test-areadlink
+====================
+
+skipping test: symlinks not supported on this file system
+
+SKIP: test-btowc2.sh
+====================
+
+Skipping test: no french Unicode locale is supported
+
+SKIP: test-canonicalize-lgpl
+============================
+
+skipping test: symlinks not supported on this file system
+
+SKIP: test-lstat
+================
+
+skipping test: symlinks not supported on this file system
+
+SKIP: test-mbrtowc2.sh
+======================
+
+Skipping test: no french Unicode locale is supported
+
+SKIP: test-mbrtowc3.sh
+======================
+
+Skipping test: no traditional japanese locale is supported
+
+SKIP: test-mbrtowc4.sh
+======================
+
+Skipping test: no transitional chinese locale is supported
+
+SKIP: test-mbsinit.sh
+=====================
+
+Skipping test: no french Unicode locale is supported
+
+SKIP: test-mbsrtowcs2.sh
+========================
+
+Skipping test: no french Unicode locale is supported
+
+SKIP: test-mbsrtowcs3.sh
+========================
+
+Skipping test: no traditional japanese locale is supported
+
+SKIP: test-mbsrtowcs4.sh
+========================
+
+Skipping test: no transitional chinese locale is supported
+
+SKIP: test-mbsstr2.sh
+=====================
+
+Skipping test: no french Unicode locale is supported
+
+SKIP: test-mbsstr3.sh
+=====================
+
+Skipping test: no chinese GB18030 locale is supported
+
+SKIP: test-open
+===============
+
+skipping test: symlinks not supported on this file system
+
+FAIL: test-pipe-filter-ii2.sh
+=============================
+
+
+SKIP: test-readlink
+===================
+
+skipping test: symlinks not supported on this file system
+
+SKIP: test-rmdir
+================
+
+skipping test: symlinks not supported on this file system
+
+SKIP: test-sigprocmask
+======================
+
+Skipping test: native Windows platform
+
+FAIL: test-spawn-pipe.sh
+========================
+
+../../../gettext-0.18.3.1/gettext-tools/gnulib-tests/test-spawn-pipe-child.c:104: assertion failed
+../../../gettext-0.18.3.1/gettext-tools/gnulib-tests/test-spawn-pipe-main.c:69: assertion failed
+test-spawn-pipe.sh: iteration 4 failed
+../../../gettext-0.18.3.1/gettext-tools/gnulib-tests/test-spawn-pipe-child.c:104: assertion failed
+test-spawn-pipe.sh: iteration 5 failed
+../../../gettext-0.18.3.1/gettext-tools/gnulib-tests/test-spawn-pipe-child.c:104: assertion failed
+test-spawn-pipe.sh: iteration 6 failed
+../../../gettext-0.18.3.1/gettext-tools/gnulib-tests/test-spawn-pipe-child.c:104: assertion failed
+test-spawn-pipe.sh: iteration 7 failed
+
+SKIP: test-stat
+===============
+
+skipping test: symlinks not supported on this file system
+
+SKIP: test-symlink
+==================
+
+skipping test: symlinks not supported on this file system
