@@ -1,0 +1,6 @@
+This package requires that a -src file exist on SF for the release being built.
+To do this you build the wsl library for the new version and do a ``make
+dist-mingwrt'' command which will put the packages into the 
+dist/mingwrt/packages/ directory within the build directory.  Upload those
+packages to the FRS site directory for the version being built.  Then you can
+use this package system to create the package that will be announced.

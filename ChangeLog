@@ -1,7 +1,12 @@
-2013-09-16  Earnie Byod  <earnie@users.sourceforge.net>
+2013-09-16  Earnie Boyd  <earnie@users.sourceforge.net>
 
 	* tcl, tk, gdb: Add new packages.
 	* gcc, mingwrt, w32api: Update packages for subsequent releases.
+
+	Add README.maintainer for mingwrt and w32api.
+
+	* mingwrt/README.maintainer: New file.
+	* w32api/README.maintainer: Ditto.
 
 2013-09-10  Earnie Boyd  <earnie@users.sourceforge.net>
 
