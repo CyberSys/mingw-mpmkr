@@ -1,3 +1,8 @@
+2013-09-16  Earnie Byod  <earnie@users.sourceforge.net>
+
+	* tcl, tk, gdb: Add new packages.
+	* gcc, mingwrt, w32api: Update packages for subsequent releases.
+
 2013-09-10  Earnie Boyd  <earnie@users.sourceforge.net>
 
 	* */*: Excluding template.  Move the files from the versioned

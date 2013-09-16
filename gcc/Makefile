@@ -201,6 +201,7 @@ $(addprefix stg/$(LICDIR)/, $(foreach f,$(addsuffix _LIC_FILES,$(MPKGPART)), $(v
 post_stage: stage exec_post_stage
 exec_post_stage:
 	$(FIND) stg/lib -name \*.dll -exec $(MVF) {} stg/bin/ \;
+	$(FIND) stg/$(HOST)/lib -name \*.dll -exec $(MVF) {} stg/$(HOST)/bin/ \;
 	$(STRIP) stg/bin/*.exe stg/bin/*.dll
 	$(CPALL) stg/bin/gcc.exe stg/bin/cc.exe
 	for F in stg/bin/gnat*.exe; do \
@@ -272,6 +273,7 @@ $(addprefix exec_bin_, $(MPKGPART)):
 	  $(INSTALL_DIR) pkg/bin ; \
 	  for F in $($(PART)_BIN_FILES); do \
 	    $(CPALL) stg/bin/$$F pkg/bin/ ; \
+	    $(RMFR) pkg/bin/*.dll pkg/$(HOST)/bin/*.dll ; \
 	  done ; \
 	)
 	if test -e pkg; then \
@@ -299,6 +301,11 @@ $(addprefix exec_dev_, $(MPKGPART)):
 	    if test -e pkg/$(HOST); then \
 	      $(INSTALL_DIR) pkg/$(HOST)/lib/$(PKG)/$(HOST)/$(PKGVER)/$$D ; \
 	      $(CPALL) stg/$(HOST)/lib/$(PKG)/$(HOST)/$(PKGVER)/$$F pkg/$(HOST)/lib/$(PKG)/$(HOST)/$(PKGVER)/$$D/; \
+	    $(if $($(PART)_LIB_EXCLUDE_FILES), \
+	      for F in $($(PART)_LIB_EXCLUDE_FILES); do \
+		$(RMFR) pkg/$(HOST)/lib/$(PKG)/$(HOST)/$(PKGVER)/$$F; \
+	      done; \
+	    ) \
 	    fi ; \
 	  done ;\
 	)

@@ -49,7 +49,7 @@ MANDIR = share/man
 LOCALEDIR = share/locale
 
 ifeq (,$(MPATCHOPT))
-MPATCHOPT = -p0
+MPATCHOPT = -p1
 endif
 
 INSTALL_DATA = /bin/install -v -m 644
@@ -93,8 +93,9 @@ $(PKGFILE):
 patch: prep exec_patch
 exec_patch:
 ifneq ($(MPATCHES),)
+	cd $(PACKAGE); \
 	for F in $(MPATCHES); do \
-	  $(PATCH) $(MPATCHOPT) < $$F ; \
+	  $(PATCH) $(MPATCHOPT) < ../$$F ; \
 	done
 endif
 	$(TOUCH)

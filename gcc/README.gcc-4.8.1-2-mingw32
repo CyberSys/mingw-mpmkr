@@ -14,11 +14,11 @@ Build requirements:
 Build instructions:
   cd working-directory
   mingw-get source mingw32-gcc
-  cd gcc-4.8.1-1-mingw32-src
+  cd gcc-4.8.1-2-mingw32-src
   make clean package
   # See the output of make usage for a detailed list of targets
   # You can edit package.ini to modify the configuration items or to increment
-  # the MPKGRLS value (the -1- after the mingw32).
+  # the MPKGRLS value (the -2- after the mingw32).
 
 When the job completes the release files will be generated in the rls directory
 of the working directory.
@@ -56,3 +56,8 @@ of the working directory.
 Test results:
 I am not equipped in my environment to execute the test suite delivered with the
 source package.  However, I did use the results to rebuild the package itself.
+
+Differences between -1- and -2-:
+The -1- release contained c++ files in both gcc-core and gcc-c++ that caused
+mingw-get to spew errors.  The -2- release has removed the duplication to
+silence the complaint of mingw-get.

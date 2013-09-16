@@ -1,0 +1,26 @@
+diff --git a/config.sub b/config.sub
+index 707e9e2..a9a43cb 100644
+--- a/config.sub
++++ b/config.sub
+@@ -798,7 +798,7 @@ case $basic_machine in
+ 		os=-mingw64
+ 		;;
+ 	mingw32)
+-		basic_machine=i386-pc
++		basic_machine=i686-pc
+ 		os=-mingw32
+ 		;;
+ 	mingw32ce)
+diff --git a/readline/support/config.sub b/readline/support/config.sub
+index d07267e..f496bf5 100644
+--- a/readline/support/config.sub
++++ b/readline/support/config.sub
+@@ -704,7 +704,7 @@ case $basic_machine in
+ 		os=-sysv
+ 		;;
+ 	mingw32)
+-		basic_machine=i386-pc
++		basic_machine=i686-pc
+ 		os=-mingw32
+ 		;;
+ 	mingw32ce)

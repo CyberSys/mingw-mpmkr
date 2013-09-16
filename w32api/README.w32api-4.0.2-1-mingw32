@@ -3,7 +3,7 @@ mingw w32api
 This distribution is created from pristine source without patches.
 
 Canonical homepage: http://mingw.org/
-Canonical download: http://sourceforge.net/projects/mingw/files/MinGW/Base/w32api/w32api-4.0.0/w32api-4.0.0-1-mingw32-bld.tar.lzma
+Canonical download: http://sourceforge.net/projects/mingw/files/MinGW/Base/w32api/w32api-4.0.2/w32api-4.0.2-1-mingw32-bld.tar.lzma
 License: Mixed - Primarily MIT style license.
          GPL for the profiling code in misc/gpl directory.
 Language: C
@@ -15,7 +15,7 @@ Build requirements:
 Build instructions:
   cd working-directory
   mingw-get source mingw32-w32api
-  cd w32api-4.0.0-1-mingw32
+  cd w32api-4.0.2-1-mingw32
   make clean package
   # See the output of make usage for a detailed list of targets
   # You can edit package.ini to modify the configuration items or to increment
@@ -24,12 +24,20 @@ Build instructions:
 When the job completes the release files will be generated in the rls/ directory
 of the working directory.
 
-  README.w32api-4.0.0-1-mingw32
-  w32api-4.0.0-1-mingw32-bld.tar.lzma
-  w32api-4.0.0-1-mingw32-dev.tar.lzma
-  w32api-4.0.0-1-mingw32-doc.tar.lzma
-  w32api-4.0.0-1-mingw32-lic.tar.lzma
-  w32api-4.0.0-1-mingw32-src.tar.lzma
+  README.w32api-4.0.2-1-mingw32
+  w32api-4.0.2-1-mingw32-bld.tar.lzma
+  w32api-4.0.2-1-mingw32-dev.tar.lzma
+  w32api-4.0.2-1-mingw32-doc.tar.lzma
+  w32api-4.0.2-1-mingw32-lic.tar.lzma
+  w32api-4.0.2-1-mingw32-src.tar.lzma
+
+Differences between 4.0.0 and 4.0.2:
+* 4.0.1: [bugs:#2037] The libwinspool.a file contained the incorrect shared
+library name and was corrected to contain winspool.drv instead of winspool.dll.
+* 4.0.2: [bugs:#2045] Wtsapi32.h was badly filtered and used specstrings.h
+components without resolving the components used.  The specstrings components
+__in/__out were removed and the badly filtered components were moved to the
+correct filter.
 
 Test results:
   This package has no organized testing.  But individual unit testing proves
